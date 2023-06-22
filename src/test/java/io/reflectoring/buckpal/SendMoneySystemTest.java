@@ -69,7 +69,7 @@ class SendMoneySystemTest {
 	}
 
 
-	private ResponseEntity whenSendMoney(
+	private ResponseEntity whenSendMoney( //특정 행위를 잘 표현하는 헬퍼 메서드 이러한 dsl이 모여 표현력 높은 테스트가 가능
 			AccountId sourceAccountId,
 			AccountId targetAccountId,
 			Money amount) {

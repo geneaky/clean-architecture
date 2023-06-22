@@ -37,6 +37,7 @@ class SendMoneyServiceTest {
 	@Test
 	void givenWithdrawalFails_thenOnlySourceAccountIsLockedAndReleased() {
 
+		//given
 		AccountId sourceAccountId = new AccountId(41L);
 		Account sourceAccount = givenAnAccountWithId(sourceAccountId);
 
@@ -51,10 +52,12 @@ class SendMoneyServiceTest {
 				targetAccountId,
 				Money.of(300L));
 
+		//when
 		boolean success = sendMoneyService.sendMoney(command);
 
 		assertThat(success).isFalse();
 
+		//then
 		then(accountLock).should().lockAccount(eq(sourceAccountId));
 		then(accountLock).should().releaseAccount(eq(sourceAccountId));
 		then(accountLock).should(times(0)).lockAccount(eq(targetAccountId));
