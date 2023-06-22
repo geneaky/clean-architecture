@@ -7,6 +7,7 @@ import io.reflectoring.buckpal.account.application.port.out.UpdateAccountStatePo
 import io.reflectoring.buckpal.account.domain.Account;
 import io.reflectoring.buckpal.account.domain.Account.AccountId;
 import io.reflectoring.buckpal.account.domain.Money;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
@@ -60,6 +61,7 @@ class SendMoneyServiceTest {
 	}
 
 	@Test
+	@DisplayName("transaction이 성공했을때 기대한 동작 성공")
 	void transactionSucceeds() {
 
 		Account sourceAccount = givenSourceAccount();
@@ -75,6 +77,9 @@ class SendMoneyServiceTest {
 				targetAccount.getId().get(),
 				money);
 
+		/**
+		 * web adapter -> incoming port -> send money command(self validation) -> send money service(send money use case)
+		 */
 		boolean success = sendMoneyService.sendMoney(command);
 
 		assertThat(success).isTrue();

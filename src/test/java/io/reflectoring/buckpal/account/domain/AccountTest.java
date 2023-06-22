@@ -1,6 +1,7 @@
 package io.reflectoring.buckpal.account.domain;
 
 import io.reflectoring.buckpal.account.domain.Account.AccountId;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static io.reflectoring.buckpal.common.AccountTestData.*;
 import static io.reflectoring.buckpal.common.ActivityTestData.*;
@@ -29,6 +30,7 @@ class AccountTest {
 	}
 
 	@Test
+	@DisplayName("withdraw 성공")
 	void withdrawalSucceeds() {
 		AccountId accountId = new AccountId(1L);
 		Account account = defaultAccount()
@@ -45,9 +47,9 @@ class AccountTest {
 
 		boolean success = account.withdraw(Money.of(555L), new AccountId(99L));
 
-		assertThat(success).isTrue();
-		assertThat(account.getActivityWindow().getActivities()).hasSize(3);
-		assertThat(account.calculateBalance()).isEqualTo(Money.of(1000L));
+		assertThat(success).isTrue(); //수행 성공
+		assertThat(account.getActivityWindow().getActivities()).hasSize(3); // 몇 번 수행
+		assertThat(account.calculateBalance()).isEqualTo(Money.of(1000L)); // 수행 결과
 	}
 
 	@Test

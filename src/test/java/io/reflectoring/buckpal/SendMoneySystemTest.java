@@ -22,6 +22,9 @@ import static org.assertj.core.api.BDDAssertions.*;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class SendMoneySystemTest {
 
+	/**
+	 * 시스템 테스트 : application http request -> application service -> db -> response
+	 */
 	@Autowired
 	private TestRestTemplate restTemplate;
 

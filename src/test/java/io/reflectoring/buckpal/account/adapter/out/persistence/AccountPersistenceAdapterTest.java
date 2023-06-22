@@ -25,6 +25,9 @@ class AccountPersistenceAdapterTest {
 	@Autowired
 	private ActivityRepository activityRepository;
 
+	/**
+	 * web adapter와 비슷한 이유로 통합 테스트를 하는 것이 합리적
+	 */
 	@Test
 	@Sql("AccountPersistenceAdapterTest.sql")
 	void loadsAccount() {
